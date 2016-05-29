@@ -1,6 +1,6 @@
 VanMMM
 
---> used AngularJS, Django, MongoDB & Bootstrape  
+--> used AngularJS, Django, MongoDB, Bootstrape, HTML, CSS & javascript  
 
 To start the app, you'll need to have `python` installed. Simply run the server script:
 

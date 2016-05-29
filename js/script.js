@@ -4,8 +4,16 @@ var myEl = angular.element( document.querySelector( '#home' ) );;
 // create the controller and inject Angular's $scope
 vanMMM.config(['$routeProvider', function($routeProvider){
     $routeProvider
-        .when('/', {
-            controller : 'HomeCtrl',
+	    .when('/home', {
+	        controller : 'HomeCtrl',
+	        templateUrl : 'views/home.html'
+	    })
+	    .when('/contactUs', {
+	        controller : 'ContactUsCtrl',
+	        templateUrl : 'views/contactUs.html'
+	    })
+        .when('/location/:location', {
+            controller : 'LocationCtrl',
             templateUrl : 'views/home.html'
         })
         .when('/login', {
@@ -16,19 +24,35 @@ vanMMM.config(['$routeProvider', function($routeProvider){
             controller : 'RegisterCtrl',
             templateUrl : 'views/register.html'
         })
-        .otherwise({
-            redirectTo : '/'
-        });
+        .otherwise({redirectTo: '/'});
+    
 }]);  
 
 vanMMM.controller('MainCtrl', ['$scope', function($scope){
+	
     $scope.date = new Date();
 }]);
 
-vanMMM.controller('HomeCtrl', ['$scope', function($scope){
+vanMMM.controller('HomeCtrl', ['$scope', '$routeParams', function($scope, $routeParams){
     $scope.title = "Home Page";
     myEl.removeClass('active');
     myEl = angular.element( document.querySelector( '#home' ) );
+    myEl.addClass('active');
+}]);
+
+vanMMM.controller('LocationCtrl', ['$scope', '$routeParams', function($scope, $routeParams){
+    $scope.title = "Home Page";
+    var local = $routeParams.location;
+    $scope.location = $routeParams.location;
+    myEl.removeClass('active');
+    myEl = angular.element( document.querySelector( '#'+local ) );
+    myEl.addClass('active');
+}]);
+
+vanMMM.controller('ContactUsCtrl', ['$scope', function($scope){
+    $scope.title = "Contact Us";
+    myEl.removeClass('active');
+    myEl = angular.element( document.querySelector( '#contactUs' ) );
     myEl.addClass('active');
 }]);
 
