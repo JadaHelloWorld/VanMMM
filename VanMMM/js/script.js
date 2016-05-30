@@ -71,3 +71,33 @@ vanMMM.controller('RegisterCtrl', ['$scope', function($scope){
     myEl = angular.element( document.querySelector( '#register' ) );
     myEl.addClass('active');
 }]);
+
+vanMMM.controller('register', ['$scope', '$http', 'httpParamSerializerJQLike', function($scope, $http, httpParamSerializerJQLike) {
+      $scope.submit = function() {
+    	  $scope.name = $scope.signup.username;
+		  $scope.email = $scope.signup.email;
+    	  $http({
+	        method  : 'post',
+	        url     : '/signup',
+	        data    : $httpParamSerializerJQLike({
+                name: $scope.name,
+                email:  $scope.email
+            }),
+	        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+	      })
+	        .success(function(data) {
+	            console.log(data);
+	 
+	            if (!data.success) {
+	                // if not successful, bind errors to error variables
+	                $scope.errorName = data.errors.name;
+	                $scope.errorSuperhero = data.errors.superheroAlias;
+	            } else {
+	                // if successful, bind success message to message
+	                $scope.message = data.message;
+	            }
+	      });
+    	};
+	  
+	  
+	}]);
