@@ -6,3 +6,9 @@
     padding: 15px;
     margin: 0 auto;
 }
+
+.nav>li>p {
+    position: relative;
+    display: block;
+    padding-top: 15px;
+}
