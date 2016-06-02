@@ -1,4 +1,7 @@
 vanMMM.controller('AipubPublicRepositoriesCtrl', ['$scope', '$http', function($scope, $http){
+	myEl.removeClass('active');
+    myEl = angular.element( document.querySelector( '#aipubPublicRepositories' ) );
+    myEl.addClass('active');
 	$http({
         method : "GET",
         url : "https://api.github.com/users/aipub/repos"
@@ -10,5 +13,6 @@ vanMMM.controller('AipubPublicRepositoriesCtrl', ['$scope', '$http', function($s
     }, function myError(response) {
         $scope.repos = [];
     });
+    
 }]);
 

@@ -7,15 +7,15 @@ vanMMM.config(['$routeProvider', function($routeProvider){
     $routeProvider
 	    .when('/home', {
 	        controller : 'HomeCtrl',
-	        templateUrl : 'views/home.html'
+	        templateUrl : 'home/home.html'
 	    })
 	    .when('/contactUs', {
 	        controller : 'ContactUsCtrl',
-	        templateUrl : 'views/contactUs.html'
+	        templateUrl : 'share/contactUs.html'
 	    })
         .when('/location/:location', {
             controller : 'LocationCtrl',
-            templateUrl : 'views/home.html'
+            templateUrl : 'home/home.html'
         })
         .when('/login', {
             controller : 'LoginCtrl',
@@ -23,7 +23,7 @@ vanMMM.config(['$routeProvider', function($routeProvider){
         })
         .when('/logout', {
             controller : 'LogoutCtrl',
-            templateUrl : 'views/home.html'
+            templateUrl : 'home/home.html'
         })
         .when('/register', {
             controller : 'RegisterCtrl',
@@ -50,12 +50,7 @@ vanMMM.controller('MainCtrl', ['$scope', '$location', function($scope, $location
 
 
 
-vanMMM.controller('HomeCtrl', ['$scope', '$routeParams', function($scope, $routeParams){
-    $scope.title = "Home Page";
-    myEl.removeClass('active');
-    myEl = angular.element( document.querySelector( '#home' ) );
-    myEl.addClass('active');
-}]);
+
 
 vanMMM.controller('LocationCtrl', ['$scope', '$routeParams', function($scope, $routeParams){
     $scope.title = "Home Page";

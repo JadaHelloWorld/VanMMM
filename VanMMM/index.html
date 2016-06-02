@@ -11,7 +11,7 @@
 </head>
 <body ng-controller="MainCtrl">
     <!-- HEADER AND NAVBAR -->
-    <header ng-include="'views/header.html'"></header>
+    <header ng-include="'share/header.html'"></header>
  
     <!-- MAIN CONTENT AND INJECTED VIEWS -->
     <div id="main" class="main">
@@ -21,8 +21,9 @@
     </div>
  
     <!-- FOOTER -->
-    <footer ng-include="'views/footer.html'"></footer>
- 	<script src="js/script.js"></script>
+    <footer ng-include="'share/footer.html'"></footer>
+ 	<script src="app.routes.js"></script>
+ 	<script src="home/home.js"></script>
  	<script src="login/login.js"></script>
  	<script src="register/register.js"></script>
  	<script src="store/store.js"></script>
