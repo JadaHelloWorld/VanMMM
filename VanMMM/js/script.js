@@ -29,6 +29,10 @@ vanMMM.config(['$routeProvider', function($routeProvider){
             controller : 'RegisterCtrl',
             templateUrl : 'views/register.html'
         })
+        .when('/aipubPublicRepositories', {
+            controller : 'AipubPublicRepositoriesCtrl',
+            templateUrl : 'views/aipubPublicRepositories.html'
+        })
         .otherwise({redirectTo: '/home'});
     
 }]);  
@@ -42,6 +46,20 @@ vanMMM.controller('MainCtrl', ['$scope', '$location', function($scope, $location
 		return username !== "admin"? true: false;
 	}
     $scope.date = new Date();
+}]);
+
+vanMMM.controller('AipubPublicRepositoriesCtrl', ['$scope', '$http', function($scope, $http){
+	$http({
+        method : "GET",
+        url : "https://api.github.com/users/aipub/repos"
+    }).then(function mySucces(response) {
+    	response.data.sort(function(a,b) {
+    	    return b.forks_count - a.forks_count;
+    	});
+        $scope.repos = response.data;
+    }, function myError(response) {
+        $scope.repos = [];
+    });
 }]);
 
 vanMMM.controller('HomeCtrl', ['$scope', '$routeParams', function($scope, $routeParams){

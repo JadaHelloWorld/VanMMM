@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Aipub Public Repository List</h2>
+  <p>The list of public repositories of the aipub organization (https://github.com/aipub), ordered by fork count desc:</p>            
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Repository Name</th>
+        <th>Fork Number</th>
+        <th>Language</th>
+        <th>Created Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <tr ng-repeat="repo in repos">
+	    <td>{{ repo.name }}</td>
+	    <td>{{ repo.forks_count }}</td>
+	    <td>{{ repo.language }}</td>
+	    <td>{{ repo.created_at }}</td>
+	  </tr>
+    </tbody>
+  </table>
+</div>
