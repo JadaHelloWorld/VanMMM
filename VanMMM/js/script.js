@@ -19,7 +19,7 @@ vanMMM.config(['$routeProvider', function($routeProvider){
         })
         .when('/login', {
             controller : 'LoginCtrl',
-            templateUrl : 'views/login.html'
+            templateUrl : 'login/login.html'
         })
         .when('/logout', {
             controller : 'LogoutCtrl',
@@ -27,11 +27,11 @@ vanMMM.config(['$routeProvider', function($routeProvider){
         })
         .when('/register', {
             controller : 'RegisterCtrl',
-            templateUrl : 'views/register.html'
+            templateUrl : 'register/register.html'
         })
         .when('/aipubPublicRepositories', {
             controller : 'AipubPublicRepositoriesCtrl',
-            templateUrl : 'views/aipubPublicRepositories.html'
+            templateUrl : 'aipubPublicRepositories/aipubPublicRepositories.html'
         })
         .otherwise({redirectTo: '/home'});
     
@@ -48,19 +48,7 @@ vanMMM.controller('MainCtrl', ['$scope', '$location', function($scope, $location
     $scope.date = new Date();
 }]);
 
-vanMMM.controller('AipubPublicRepositoriesCtrl', ['$scope', '$http', function($scope, $http){
-	$http({
-        method : "GET",
-        url : "https://api.github.com/users/aipub/repos"
-    }).then(function mySucces(response) {
-    	response.data.sort(function(a,b) {
-    	    return b.forks_count - a.forks_count;
-    	});
-        $scope.repos = response.data;
-    }, function myError(response) {
-        $scope.repos = [];
-    });
-}]);
+
 
 vanMMM.controller('HomeCtrl', ['$scope', '$routeParams', function($scope, $routeParams){
     $scope.title = "Home Page";
@@ -85,17 +73,7 @@ vanMMM.controller('ContactUsCtrl', ['$scope', function($scope){
     myEl.addClass('active');
 }]);
 
-vanMMM.controller('LoginCtrl', ['$scope', '$location', function($scope, $location){
-    $scope.title = "login";
-    myEl.removeClass('active');
-    myEl = angular.element( document.querySelector( '#login' ) );
-    myEl.addClass('active');
-    $scope.submit = function() {
-  		  username = $scope.login.username;
-  		  setCookie("name", username, 1);
-  		  $location.path('/home');
-    }
-}]);
+
 
 vanMMM.controller('LogoutCtrl', ['$scope', '$location', function($scope, $location){
     $scope.title = "logout";
@@ -108,43 +86,7 @@ vanMMM.controller('LogoutCtrl', ['$scope', '$location', function($scope, $locati
     
 }]);
 
-vanMMM.controller('RegisterCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
-    $scope.onViewLoad = function(){
-      console.log('view changed');  
-    };
-    myEl.removeClass('active');
-    myEl = angular.element( document.querySelector( '#register' ) );
-    myEl.addClass('active');
-    $scope.submit = function() {
-  	  $scope.name = $scope.signup.username;
-		  $scope.email = $scope.signup.email;
 
-		  username = $scope.signup.username;
-		  setCookie("name", username, 1);
-		  $location.path('/home');
-//  	  $http({
-//	        method  : 'post',
-//	        url     : '/signup',
-//	        data    : $httpParamSerializerJQLike({
-//              name: $scope.name,
-//              email:  $scope.email
-//          }),
-//	        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-//	      })
-//	        .success(function(data) {
-//	            console.log(data);
-//	 
-//	            if (!data.success) {
-//	                // if not successful, bind errors to error variables
-//	                $scope.errorName = data.errors.name;
-//	                $scope.errorSuperhero = data.errors.superheroAlias;
-//	            } else {
-//	                // if successful, bind success message to message
-//	                $scope.message = data.message;
-//	            }
-//	      });
-  	};
-}]);
 
 //设置cookie
 function setCookie(name,value,iDay){	//三个参数分别为：cookie名称、值、多少天后过期
