@@ -5,9 +5,11 @@ from models import User
 from mongoengine import * 
 from pymongo import Connection
 import json
+from django.http import JsonResponse
 
 def testview(request):  
     ret = "NOT save"
+    
     if request.method == "POST":
         databaseName = "vanmmm_db"
         body_unicode = request.body.decode('utf-8')
@@ -24,8 +26,6 @@ def testview(request):
         for e in users.find({"name":body["name"]}):
             ret = e["email"]
             to_json = {"email": ret}
-    return HttpResponse(json.dumps(to_json), content_type="application/json")
-
-
+    return  JsonResponse(to_json)#HttpResponse(json.dumps(to_json), content_type="application/json")
 
 

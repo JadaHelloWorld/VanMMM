@@ -11,27 +11,20 @@ vanMMM.controller('RegisterCtrl', ['$scope', '$http', '$location', function($sco
 
 		  username = $scope.signup.username;
 		  setCookie("name", username, 1);
-		  $location.path('/home');
-//  	  $http({
-//	        method  : 'post',
-//	        url     : '/signup',
-//	        data    : $httpParamSerializerJQLike({
-//              name: $scope.name,
-//              email:  $scope.email
-//          }),
-//	        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-//	      })
-//	        .success(function(data) {
-//	            console.log(data);
-//	 
-//	            if (!data.success) {
-//	                // if not successful, bind errors to error variables
-//	                $scope.errorName = data.errors.name;
-//	                $scope.errorSuperhero = data.errors.superheroAlias;
-//	            } else {
-//	                // if successful, bind success message to message
-//	                $scope.message = data.message;
-//	            }
-//	      });
+		  //$location.path('/home');
+	  var req = {
+			  method: 'POST',
+			  url: 'api/register/',
+			  headers: {
+			    'Content-Type': 'application/json'
+			  },
+			  data: {
+	              "name": $scope.name,
+	              "email":  $scope.email
+	          },
+			 }
+
+	  $http(req).then(function(response){$scope.message = response.data;}, function(){});
+		  
   	};
 }]);
