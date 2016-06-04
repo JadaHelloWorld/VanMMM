@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="vanMMM">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body ng-controller="MainCtrl">
+    <!-- HEADER AND NAVBAR -->
+    <header ng-include="{% static 'views/header.html' %}"></header>
+ 
+    <!-- MAIN CONTENT AND INJECTED VIEWS -->
+    <div id="main" class="main">
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div ng-view></div>
+    </div>
+ 
+    <!-- FOOTER -->
+    <footer ng-include="{% static 'views/footer.html' %}"></footer>
+ 
+</body>
+</html>
